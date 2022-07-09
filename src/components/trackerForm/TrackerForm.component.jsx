@@ -6,20 +6,18 @@ import { Input } from "../../common/input/Input.component";
 
 import { addTracker } from '../../store/tracker/actionCreators';
 
-import { useId } from 'react-id-generator';
+import moment from 'moment';
 
 import classes from './TrackerFrom.module.css';
 
 const TrackerForm = ({ addTracker }) => {
     const [trackerName, setTrackerName] = useState('');
-    const [htmlId] = useId();
-
 
     const onHandleSubmit = event => {
         event.preventDefault();
         addTracker({
-            name: trackerName,
-            id: htmlId,
+            name: trackerName === '' ? moment(new Date()).format("DD-MM-YYYY(hh:mm)") : trackerName,
+            id: Math.floor(Math.random()*10000000),
             date: new Date(),
             paused: false,
             pauseTime: 0,

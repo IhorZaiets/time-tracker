@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
 
-    width: 50%;
+    width: 560px;
 
     margin: 0 auto 0 auto;
     padding-top: 10%;
@@ -11,4 +11,12 @@
 
 .main-header{
     margin-bottom: 5%;
+}
+
+@media screen and (max-width: 560px) and (min-width: 320px) {
+    .tracker{
+        width: 100%;
+        padding: 10% 10px;
+        box-sizing: border-box;
+    }
 }
