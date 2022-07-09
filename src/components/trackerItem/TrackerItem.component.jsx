@@ -1,21 +1,35 @@
 import { Button } from '../../common/button/Button.component';
 
 import { useEffect, useState } from 'react';
-import { removeTracker } from '../../store/tracker/actionCreators'
 
+import { removeTracker } from '../../store/tracker/actionCreators';
+import { pauseToggle } from '../../store/tracker/actionCreators';
+import { modifyTracker } from '../../store/tracker/actionCreators';
 
 import classes from './TrackerItem.module.css';
 import { connect } from 'react-redux';
-import Moment from 'react-moment';
 
-const TrackerItem = ({name, id, removeTracker}) => {
-    const [isPause, setIsPause] = useState(false);
+const TrackerItem = ({name, id, paused, date, pauseTime, modifyTracker, removeTracker, pauseToggle}) => {
+    if(!paused){
+        const timerDate = new Date(date)
+        const dateNow = new Date()
+        const difference = dateNow - timerDate + pauseTime;
+        var initialHours = Math.floor((difference / 3600000) % 60)
+        var initialMins = Math.floor((difference / 60000) % 60)
+        var initialSec = Math.floor((difference / 1000) % 60)
+    }else {
+        initialHours = Math.floor((pauseTime / 3600000) % 60)
+        initialMins = Math.floor((pauseTime / 60000) % 60)
+        initialSec = Math.floor((pauseTime / 1000) % 60)
+    }
+
+
+    const [isPause, setIsPause] = useState(paused);
     const [timer, setTimer] = useState({
-        h:0,
-        m:0,
-        s:0,
+        h: initialHours,
+        m: initialMins,
+        s: initialSec,
     });
-    const [interv ,setInterv] = useState();
 
     let updatedS = timer.s;
     let updatedM = timer.m;
@@ -35,21 +49,15 @@ const TrackerItem = ({name, id, removeTracker}) => {
         return setTimer({s:updatedS, m:updatedM, h:updatedH});
     };
 
-    const start = () => {
-        let intervalId = setInterval(run, 100);
-        setInterv(intervalId);
-    };
-
 
     useEffect(() => {
         let interval = null;
         if(!isPause){
-            interval = setInterval(run, 100);
+            interval = setInterval(run, 1000);
         }else {
             clearInterval(interval);
         }
         return () => {
-            console.log("cleaning up");
             clearInterval(interval);
         };
 
@@ -58,8 +66,22 @@ const TrackerItem = ({name, id, removeTracker}) => {
 
 
     const onPauseClick = event => {
-        clearInterval(interv);
+        if(!isPause){
+            const timerDate = new Date(date)
+            const dateNow = new Date()
+            const difference = dateNow - timerDate;
+            modifyTracker({
+                id:id,
+                pauseTime: pauseTime + difference
+            })
+        }else{
+            modifyTracker({
+                id:id,
+                date: new Date(),
+            })
+        }
         setIsPause(prevState => !prevState);
+        pauseToggle(id);
     }
 
     const onRemoveClick = () => {
@@ -93,6 +115,8 @@ const TrackerItem = ({name, id, removeTracker}) => {
 
 const mapDispatchToProps = {
     removeTracker,
+    pauseToggle,
+    modifyTracker,
 }
 
 export default connect(null, mapDispatchToProps)(TrackerItem);

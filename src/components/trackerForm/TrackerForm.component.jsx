@@ -6,16 +6,23 @@ import { Input } from "../../common/input/Input.component";
 
 import { addTracker } from '../../store/tracker/actionCreators';
 
+import { useId } from 'react-id-generator';
+
 import classes from './TrackerFrom.module.css';
 
 const TrackerForm = ({ addTracker }) => {
     const [trackerName, setTrackerName] = useState('');
+    const [htmlId] = useId();
+
 
     const onHandleSubmit = event => {
         event.preventDefault();
         addTracker({
             name: trackerName,
-            id: `${Math.random()*1000000}`,
+            id: htmlId,
+            date: new Date(),
+            paused: false,
+            pauseTime: 0,
         });
         setTrackerName('')
     }
