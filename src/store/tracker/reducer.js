@@ -1,6 +1,15 @@
 import TrackerTypes from './actionTypes';
 
-const INITIAL_STATE = [];
+const INITIAL_STATE = [
+    {
+        name: 'first',
+        id: 'ajhfbvqwyf97364gf'
+    },
+    {
+        name: 'second',
+        id: 'afhbvqergv qkuev'
+    },
+];
 
 const trackerReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
@@ -8,7 +17,7 @@ const trackerReducer = (state = INITIAL_STATE, action) => {
             return [
                 action.payload,
                 ...state
-            ]
+            ];
 		case TrackerTypes.REMOVE_TRACKER:
 			return [
                 ...state.filter(elem => elem.id !== action.payload)

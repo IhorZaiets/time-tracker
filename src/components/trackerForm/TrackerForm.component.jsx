@@ -13,7 +13,11 @@ const TrackerForm = ({ addTracker }) => {
 
     const onHandleSubmit = event => {
         event.preventDefault();
-        addTracker(trackerName);
+        addTracker({
+            name: trackerName,
+            id: `${Math.random()*1000000}`,
+        });
+        setTrackerName('')
     }
 
     const onHandleChange = event => {

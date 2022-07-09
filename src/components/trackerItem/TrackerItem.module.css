@@ -1,0 +1,53 @@
+.tracker-item{
+    height: 3.5em;
+    font-size: 20px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid rgb(168, 167, 167);
+    padding-left: 1em;
+    padding-right: 0.5em;
+}
+.tracker-item:last-child{
+    border-bottom: 1px solid rgb(168, 167, 167);
+}
+
+.item-name{
+    flex-grow: 1;
+}
+
+.item-timer{
+    font-weight: bold;
+}
+
+.item-btn{
+    height: 2.3em;
+    width: 2.3em;
+    background-color: transparent;
+    border: 3px solid black;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.red{
+    border-color: red;
+    color: red;
+}
+
+.paused{
+    background-color: rgb(241, 249, 241);
+    color: green;
+}
+
+/* 
+.tracker-item:hover{
+    background-color: rgb(241, 249, 241);
+}
+
+.tracker-item:hover .item-name,
+.tracker-item:hover .item-timer{
+    color: green;
+} */
