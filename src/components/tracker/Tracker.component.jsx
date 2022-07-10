@@ -6,11 +6,11 @@ import classes from './Tracker.module.css'
 
 const Tracker = () => {
     return (
-        <div className={classes.tracker}>
+        <main className={classes.tracker}>
             <h1 className={classes['main-header']}>Tracker</h1>
             <TrackerForm />
             <TrackerList />
-        </div>
+        </main>
     )
 }
 

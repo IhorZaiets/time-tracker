@@ -6,12 +6,11 @@ import classes from './TrackerList.module.css';
 import { connect } from "react-redux";
 import { useEffect } from "react";
 
+
 const TrackerList = ({ trackers, fetchTrackers }) => {
 
     useEffect(() => {
         fetchTrackers()
-        if(localStorage.getItem('trackers')){
-        }
     }, [])
 
     return (

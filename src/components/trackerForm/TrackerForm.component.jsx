@@ -7,6 +7,7 @@ import { Input } from "../../common/input/Input.component";
 import { addTracker } from '../../store/tracker/actionCreators';
 
 import moment from 'moment';
+import { v4 as uuidv4 } from 'uuid';
 
 import classes from './TrackerFrom.module.css';
 
@@ -17,7 +18,7 @@ const TrackerForm = ({ addTracker }) => {
         event.preventDefault();
         addTracker({
             name: trackerName === '' ? moment(new Date()).format("DD-MM-YYYY(hh:mm)") : trackerName,
-            id: Math.floor(Math.random()*10000000),
+            id: uuidv4(),
             date: new Date(),
             paused: false,
             pauseTime: 0,
