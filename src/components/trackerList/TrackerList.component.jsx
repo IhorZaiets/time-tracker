@@ -1,4 +1,6 @@
-import TrackerItem from "../trackerItem/TrackerItem.component";
+import React from 'react';
+
+import TrackerItem from "../trackerItem/TrackerItem.component.jsx";
 import { fetchTrackers } from "../../store/tracker/actionCreators";
 
 import classes from './TrackerList.module.css';

@@ -1,10 +1,12 @@
-import { Button } from '../../common/button/Button.component';
+import React from 'react';
+
+import { Button } from '../../common/button/Button.component.jsx';
 
 import { useEffect, useState } from 'react';
 
-import { removeTracker } from '../../store/tracker/actionCreators';
-import { pauseToggle } from '../../store/tracker/actionCreators';
-import { modifyTracker } from '../../store/tracker/actionCreators';
+import { removeTracker } from '../../store/tracker/actionCreators.js';
+import { pauseToggle } from '../../store/tracker/actionCreators.js';
+import { modifyTracker } from '../../store/tracker/actionCreators.js';
 
 import classes from './TrackerItem.module.css';
 import { connect } from 'react-redux';

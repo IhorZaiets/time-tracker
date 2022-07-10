@@ -1,10 +1,13 @@
+
+import React from 'react';
+
 import { connect } from 'react-redux';
 import { useState } from "react";
 
-import { Button } from "../../common/button/Button.component";
-import { Input } from "../../common/input/Input.component";
+import { Button } from "../../common/button/Button.component.jsx";
+import { Input } from "../../common/input/Input.component.jsx";
 
-import { addTracker } from '../../store/tracker/actionCreators';
+import { addTracker } from '../../store/tracker/actionCreators.js';
 
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';

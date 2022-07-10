@@ -1,6 +1,7 @@
 import React from "react"
-import TrackerForm from "../trackerForm/TrackerForm.component";
-import TrackerList from "../trackerList/TrackerList.component";
+
+import TrackerForm from "../trackerForm/TrackerForm.component.jsx";
+import TrackerList from "../trackerList/TrackerList.component.jsx";
 
 import classes from './Tracker.module.css'
 

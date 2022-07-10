@@ -3,19 +3,6 @@ import TrackerTypes from './actionTypes';
 const INITIAL_STATE = [];
 
 
-// {
-//     name: 'first',
-//     id: 'ajhfbvqwyf97364gf',
-//     date: new Date(),
-//     paused: false,
-// },
-// {
-//     name: 'second',
-//     id: 'afhbvqergv qkuev',
-//     date: new Date(),
-//     paused: true,
-// },
-
 const trackerReducer = (state = INITIAL_STATE, action) => {
 
 	switch (action.type) {
@@ -28,13 +15,13 @@ const trackerReducer = (state = INITIAL_STATE, action) => {
             return addTracker
 		case TrackerTypes.REMOVE_TRACKER:
             const removeTracker = [
-                ...state.filter(elem => elem.id !== action.payload)
+                ...state?.filter(elem => elem.id !== action.payload)
             ]
             localStorage.setItem('trackers', JSON.stringify(removeTracker))
 			return removeTracker;
         case TrackerTypes.PAUSE_TOGGLE:
             const pauseTrackers = [
-                ...state.map(elem => {
+                ...state?.map(elem => {
                     if(elem.id === action.payload){
                         return {
                             ...elem,
@@ -51,7 +38,7 @@ const trackerReducer = (state = INITIAL_STATE, action) => {
             ]
         case TrackerTypes.MODIFY_TRACKER:
             const modifyTracker = [
-                ...state.map(elem => {
+                ...state?.map(elem => {
                     if(elem.id === action.payload.id){
                         return {
                             ...elem,
