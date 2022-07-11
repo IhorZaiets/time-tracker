@@ -33,9 +33,12 @@ const trackerReducer = (state = INITIAL_STATE, action) => {
             localStorage.setItem('trackers', JSON.stringify(pauseTrackers))
             return pauseTrackers
         case TrackerTypes.FETCH_TRACKERS:
-            return [
-                ...JSON.parse(localStorage.getItem('trackers'))
-            ]
+            const fetchedData = localStorage?.getItem('trackers')
+            if(fetchedData){
+                return [
+                    ...JSON.parse(fetchedData)
+                ]
+            }else return []
         case TrackerTypes.MODIFY_TRACKER:
             const modifyTracker = [
                 ...state?.map(elem => {
